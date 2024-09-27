@@ -1,0 +1,122 @@
+<nav class="navbar position-fixed">
+    <div class="navbar-left">
+      <a routerLink="/" class="nav-item">Home</a>
+      <a routerLink="/profiles" class="nav-item">Profiles</a>
+      <a routerLink="/reports" class="nav-item">Reports</a>
+      <a routerLink="/settings" class="nav-item">Settings</a>
+    </div>
+    <div class="navbar-right">
+      <button class="bell-icon">
+        <i class="fas fa-bell"></i>
+      </button>
+      <button class="bell-icon">
+        <i class="fas fa-user"></i>
+      </button>
+    </div>
+  </nav>
+  
+  <div class="profile-section">
+    <div class="profile-header">
+      <div class="profile-info">
+        <img [src]="userProfile.imageUrl" [alt]="userProfile.name" class="user-image" />
+        <div>
+          <h5 *ngIf="!isEditing"><b>{{ userProfile.name }}</b></h5>
+          <input *ngIf="isEditing" [(ngModel)]="userProfile.name" class="form-control">
+          <p>{{ userProfile.position }}</p>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-primary mr-2" (click)="toggleEdit()">
+          <i class="fas" [ngClass]="{'fa-edit': !isEditing, 'fa-save': isEditing}"></i>
+          {{ isEditing ? 'Save' : 'Edit' }}
+        </button>
+        <button class="btn btn-success" (click)="onNewRequest()">
+          <i class="fas fa-plus"></i> New Request
+        </button>
+      </div>
+    </div>
+  
+    <div class="profile-details">
+      <div class="detail-item">
+        <i class="fas fa-user"></i>
+        <div>
+          <h5><b>Reporting To:</b></h5>
+          <p>{{ userProfile.reportingTo }}</p>
+        </div>
+      </div>
+      <div class="detail-item">
+        <i class="fas fa-chart-line"></i>
+        <div>
+          <h5><b>Corporate Level:</b></h5>
+          <p>{{ userProfile.corporateLevel }}</p>
+        </div>
+      </div>
+      <div class="detail-item">
+        <i class="fas fa-hourglass-half"></i>
+        <div>
+          <h5><b>Lifetime:</b></h5>
+          <p>{{ userProfile.lifetime }}</p>
+        </div>
+      </div>
+      <div class="detail-item">
+        <i class="fas fa-umbrella-beach"></i>
+        <div>
+          <h5><b>Vacation Days Left:</b></h5>
+          <p [ngStyle]="{'color': userProfile.vacationDaysLeft < 5 ? 'red' : 'green'}">
+            {{ userProfile.vacationDaysLeft }} Days
+          </p>
+        </div>
+      </div>
+      <div class="detail-item">
+        <i class="fas fa-medkit"></i>
+        <div>
+          <h5><b>Sick Days Left:</b></h5>
+          <p>{{ userProfile.sickDaysLeft }} Days</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="history-section">
+    <div class="section-header">
+      <i class="fas fa-history"></i>
+      <h5>History</h5>
+    </div>
+    <input type="text" class="form-control mb-3" placeholder="Search history..." 
+           [(ngModel)]="searchText" (input)="onSearchChange($event)">
+    <hr />
+    <div class="history-cards">
+      <div class="card" *ngFor="let item of historyItems">
+        <h4 [innerHTML]="item.type | highlight:searchText"></h4>
+        <p>{{ item.startDate }} - {{ item.endDate }} {{ item.days }} days</p>
+        <p>Approved by: <span [innerHTML]="item.approvedBy | highlight:searchText"></span></p>
+      </div>
+      <a href="#" class="view-more">View More ></a>
+    </div>
+  </div>
+  
+  <div class="pending-requests-section">
+    <div class="section-header">
+      <i class="fas fa-magnifying-glass"></i>
+      <h5>Pending Requests</h5>
+    </div>
+    <hr />
+    <div class="pending-request-cards">
+      <div class="card" *ngFor="let request of pendingRequests">
+        <img [src]="request.imageUrl" [alt]="request.name" class="request-image">
+        <h4>{{ request.name }}</h4>
+        <p>Submitted on: {{ request.submittedDate }}</p>
+        <p>Duration: {{ request.duration }}</p>
+        <p>Salary: {{ request.salary }}</p>
+        <div class="action-buttons">
+          <button class="btn btn-outline-success" (click)="onReject(request)">
+            <i class="fas fa-times"></i> Reject
+          </button>
+          <button class="btn btn-success" (click)="onAccept(request)">
+            <i class="fas fa-check"></i> Accept
+          </button>
+        </div>
+      </div>
+      <a routerLink="/profiles" class="view-more">View More ></a>
+    </div>
+  </div>

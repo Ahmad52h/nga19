@@ -1,0 +1,100 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    width: 100%;
+  }
+  
+  .navbar-left, .navbar-right {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav-item {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .bell-icon {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+  }
+  
+  .profile-section, .history-section, .pending-requests-section {
+    margin: 2rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+  }
+  
+  .profile-header, .profile-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .profile-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .user-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .history-cards, .pending-request-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .card {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .request-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  
+  .view-more {
+    display: block;
+    margin-top: 1rem;
+    text-align: center;
+    color: #28a745;
+    text-decoration: none;
+  }
+
+  .highlight {
+    background-color: yellow;
+    font-weight: bold;
+  }
